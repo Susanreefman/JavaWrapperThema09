@@ -1,0 +1,35 @@
+@relation dataset_thema09-weka.filters.unsupervised.attribute.StringToNominal-Rlast
+
+@attribute '' numeric
+@attribute frstuse {<11,12-14,18-20,25-29,15-17,>30,21-24}
+@attribute freq {'Daily use','No use in the past month','Some use'}
+@attribute sub {Alcohol,Heroin,Methamphetamine,Marijuana/hashish,'Other opiates and synthetics',Cocaine/crack,Benzodiazepines,'Other amphetamines',Other,'Other non-barbiturate sedatives or hypnotics',PCP,Barbiturates,'Other stimulants','Non-prescription methadone','Other hallucinogens','Over-the-counter medications',Inhalants,'Other non-benzodiazepine tranquilizers'}
+@attribute type_drug {'Alcohol only','Other drugs only','Alcohol and other drugs'}
+@attribute los {5,46-60,2,16,1,31-45,>365,12,61-90,13,181-365,26,22,4,121-180,6,91-120,29,15,9,7,27,3,10,28,20,19,21,11,14,8,18,24,17,23,25,30}
+
+@data
+1,<11,'Daily use',Alcohol,'Alcohol only',?
+2,12-14,'No use in the past month',Heroin,'Other drugs only',?
+3,18-20,'Some use',Methamphetamine,'Other drugs only',?
+4,25-29,'Daily use',Heroin,'Other drugs only',?
+5,12-14,'Daily use',Heroin,'Alcohol and other drugs',?
+6,15-17,'No use in the past month',Marijuana/hashish,'Other drugs only',?
+7,18-20,'Daily use',Marijuana/hashish,'Other drugs only',?
+8,15-17,'Some use',Marijuana/hashish,'Alcohol and other drugs',?
+9,18-20,'No use in the past month','Other opiates and synthetics','Other drugs only',?
+10,15-17,'Daily use',Methamphetamine,'Other drugs only',?
+11,12-14,'Daily use',Methamphetamine,'Other drugs only',?
+12,<11,'Some use',Alcohol,'Alcohol only',?
+13,25-29,'Daily use','Other opiates and synthetics','Alcohol and other drugs',?
+14,<11,'Some use',Marijuana/hashish,'Other drugs only',?
+15,>30,'Daily use',Heroin,'Other drugs only',?
+16,<11,'Some use',Cocaine/crack,'Other drugs only',?
+17,15-17,'Some use',Cocaine/crack,'Other drugs only',?
+18,12-14,'Some use',Alcohol,'Alcohol and other drugs',?
+19,15-17,'No use in the past month','Other opiates and synthetics','Other drugs only',?
+20,18-20,'No use in the past month',Methamphetamine,'Other drugs only',?
+21,25-29,'No use in the past month','Other opiates and synthetics','Other drugs only',?
+22,18-20,'Some use',Heroin,'Other drugs only',?
+23,12-14,'Daily use',Alcohol,'Alcohol only',?
+24,12-14,'Daily use',Alcohol,'Alcohol only',?
+25,21-24,'No use in the past month',Heroin,'Alcohol and other drugs',?
