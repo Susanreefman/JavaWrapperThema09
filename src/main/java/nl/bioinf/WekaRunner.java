@@ -1,7 +1,6 @@
 package nl.bioinf;
 
 import weka.classifiers.bayes.NaiveBayes;
-import weka.classifiers.trees.J48;
 import weka.core.Instance;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils.DataSource;
@@ -9,41 +8,18 @@ import weka.core.converters.ConverterUtils.DataSource;
 import java.io.IOException;
 
 /**
- * If you saved a model to a file in WEKA, you can use it reading the generated java object.
- * Here is an example with Random Forest classifier (previously saved to a file in WEKA):
- * import java.io.ObjectInputStream;
- * import weka.core.Instance;
- * import weka.core.Instances;
- * import weka.core.Attribute;
- * import weka.core.FastVector;
- * import weka.classifiers.trees.RandomForest;
- * RandomForest rf = (RandomForest) (new ObjectInputStream(PATH_TO_MODEL_FILE)).readObject();
- * <p>
- * or
- * RandomTree treeClassifier = (RandomTree) SerializationHelper.read(new FileInputStream("model.weka")));
- *
- * Instances is een weka class.
- * DataSource is een weka class.
- * getDataSet is een weka method
+ * Weka Class with WekaRunner class builds model from input file
+ * saves model to a file and use that file to classify new instances.
  */
 public class WekaRunner {
     private final String modelFile = "testdata/naiveBayes.model";
 
     /**
-     *
-     *
+     * start - starting Algorithm, building the model, classify new instances
+     * @param inputFile - datafile as input
      */
-    public static void main(String[] args) {
-        WekaRunner runner = new WekaRunner();
-        runner.start();
-    }
-
-    /**
-     *
-     *
-     */
-    private void start() {
-        String datafile = "testdata/data_teds.arff";
+    public void start(String inputFile) {
+        String datafile = inputFile;
         String unknownFile = "testdata/unknown_data_teds.arff";
         try {
             // Building the model
@@ -98,12 +74,6 @@ public class WekaRunner {
         //post 3.5.5
         // serialize model
         weka.core.SerializationHelper.write(modelFile, naiveBayes);
-
-        // serialize model pre 3.5.5
-//        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(modelFile));
-//        oos.writeObject(j48);
-//        oos.flush();
-//        oos.close();
     }
 
     /**
@@ -113,10 +83,10 @@ public class WekaRunner {
      */
     private NaiveBayes buildClassifier(Instances instances) throws Exception {
         String[] options = new String[1];
-        options[0] = "-D";            // unpruned tree
-        NaiveBayes tree = new NaiveBayes();         // new instance of tree
-        tree.setOptions(options);     // set the options
-        tree.buildClassifier(instances);   // build classifier
+        options[0] = "-D";                      // Use supervised discretization to process numeric attributes
+        NaiveBayes tree = new NaiveBayes();     // new instance of tree
+        tree.setOptions(options);               // set the options
+        tree.buildClassifier(instances);        // build classifier
         return tree;
     }
 
@@ -153,7 +123,7 @@ public class WekaRunner {
             Instances data = source.getDataSet();
 
             // setting class attribute if the data format does not provide this information
-           if (data.classIndex() == -1)
+            if (data.classIndex() == -1)
                 data.setClassIndex(data.numAttributes() - 1);
             return data;
         } catch (Exception e) {
